@@ -10,7 +10,7 @@ class UserAdmin(BaseUserAdmin):
     list_display_links = ('first_name','email')
     fieldsets = (
         (None, {'fields': ('email', 'password')}),
-        ('Personal info', {'fields': ('first_name','surname_name','last_login')}),
+        ('Personal info', {'fields': ('image','first_name','surname_name','last_login')}),
         ('Permissions', {'fields': ('is_staff','is_active')}),
     )
     # add_fieldsets is not a standard ModelAdmin attribute. UserAdmin
@@ -36,10 +36,11 @@ class  Blog_Imagesinline(admin.TabularInline):
 
 
 class BlogpostAdmin(admin.ModelAdmin):
-    fieldsets=[(None,{'fields':['title','main_image','author']})]
+    fieldsets=[(None,{'fields':['is_popular','is_trending','title','main_image','author','categories']})]
     inlines=[BlogPost_Paragraphinline,Blog_Imagesinline]
 
 
 
 admin.site.register(models.myUser,UserAdmin)
 admin.site.register(models.BlogPost,BlogpostAdmin)
+admin.site.register(models.Categories)
