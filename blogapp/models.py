@@ -46,3 +46,39 @@ class myUser(PermissionsMixin,AbstractBaseUser):
 
     def __str__(self):
         return self.email
+
+
+
+"# a BlogPost Must Have"
+"""
+blogpost Title
+as many paragraph it wants -- (many paragraph to one post)
+one picture
+isPopular
+(many comment to one post)
+foren kye of tag
+"""
+class BlogPost(models.Model):
+    title = models.CharField(max_length=200)
+    main_image= models.ImageField(upload_to='blogpost/main_image/%m/%d/')
+    author = models.ForeignKey(myUser,on_delete=models.CASCADE)
+
+    def __str__(self) -> str:
+        return f'{self.title} By {self.author}'
+
+
+class BlogParagraph(models.Model):
+    "one BlogPost has many BlogParagraph"
+    blogpost = models.ForeignKey(BlogPost,on_delete=models.CASCADE)
+    input_text = models.TextField()
+
+class BlogImages(models.Model):
+    blogpost = models.ForeignKey(BlogPost,on_delete=models.CASCADE)
+    secondary_image= models.ImageField(upload_to='blogpost/secondary_image/%m/%d/')
+
+
+# class Comment
+
+"""
+class Tag
+"""
