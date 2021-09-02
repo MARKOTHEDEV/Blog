@@ -28,19 +28,21 @@ class UserAdmin(BaseUserAdmin):
 class  BlogPost_Paragraphinline(admin.TabularInline):
     model= models.BlogParagraph
     extra=1
+    # fieldsets
 
-class  Blog_Imagesinline(admin.TabularInline):
-    model= models.BlogImages
-    extra=1
-    max_num =2
+# class  Blog_Imagesinline(admin.TabularInline):
+#     model= models.BlogImages
+#     extra=1
+#     max_num =2
 
 
 class BlogpostAdmin(admin.ModelAdmin):
     fieldsets=[(None,{'fields':['is_popular','is_trending','title','main_image','author','categories']})]
-    inlines=[BlogPost_Paragraphinline,Blog_Imagesinline]
+    inlines=[BlogPost_Paragraphinline]
 
 
 
 admin.site.register(models.myUser,UserAdmin)
 admin.site.register(models.BlogPost,BlogpostAdmin)
 admin.site.register(models.Categories)
+admin.site.register(models.AboutSite)

@@ -125,10 +125,23 @@ class BlogParagraph(models.Model):
     "one BlogPost has many BlogParagraph"
     blogpost = models.ForeignKey(BlogPost,on_delete=models.CASCADE)
     input_text = models.TextField()
+    image = models.ImageField(upload_to='blogParagraphImage/%m/%d/',blank=True)
 
-class BlogImages(models.Model):
-    blogpost = models.ForeignKey(BlogPost,on_delete=models.CASCADE)
-    secondary_image= models.ImageField(upload_to='blogpost/secondary_image/%m/%d/')
+# class BlogImages(models.Model):
+#     blogpost = models.ForeignKey(BlogPost,on_delete=models.CASCADE)
+#     secondary_image= models.ImageField(upload_to='blogpost/secondary_image/%m/%d/')
 
 
-# class Comment
+
+class AboutSite_Manager(models.Manager):
+
+    def get_site_about(self):
+        return super().get_queryset().all()[0]
+
+class AboutSite(models.Model):
+    body= models.TextField()
+    
+    objects = AboutSite_Manager()
+
+    def __str__(self):
+        return f'{self.id}) { self.body[0:10]}..'
