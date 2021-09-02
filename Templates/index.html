@@ -74,14 +74,14 @@
 					<!-- featured post large -->
 					<div class="post featured-post-lg">
 						<div class="details clearfix">
-							<a href="category.html" class="category-badge">{{ random_post.categories }}</a>
-							<h2 class="post-title"><a href="blog-single.html">{{ random_post.title }}</a></h2>
+							<a href="{% url 'post-detail' random_post.id %}" class="category-badge">{{ random_post.categories }}</a>
+							<h2 class="post-title"><a href="{% url 'post-detail' random_post.id %}">{{ random_post.title }}</a></h2>
 							<ul class="meta list-inline mb-0">
 								<li class="list-inline-item"><a href="#">{{ random_post.author }}</a></li>
 								<li class="list-inline-item">{{ random_post.date_created|date:"D, M Y." }}</li>
 							</ul>
 						</div>
-						<a href="blog-single.html">
+						<a href="{% url 'post-detail' random_post.id %}">
 							<div class="thumb rounded">
 								<div class="inner data-bg-image" data-bg-image="{{ random_post.main_image.url }}"></div>
 							</div>
@@ -111,14 +111,14 @@
 												<!-- post -->
 										<div class="post post-list-sm circle">
 											<div class="thumb circle">
-												<a href="#">
+												<a href="{% url 'post-detail' post.id %}">
 													<div class="inner">
 														<img src="{{ post.main_image.url }}" alt="post-title" />
 													</div>
 												</a>
 											</div>
 											<div class="details clearfix">
-												<h6 class="post-title my-0"><a href="#">{{ post.title }}</a></h6>
+												<h6 class="post-title my-0"><a href="{% url 'post-detail' post.id %}">{{ post.title }}</a></h6>
 												<ul class="meta list-inline mt-1 mb-0">
 													<li class="list-inline-item">{{ post.date_created|date:"D, M Y." }}</li>
 												</ul>
@@ -138,14 +138,14 @@
 								<!-- post -->
 											<div class="post post-list-sm circle">
 												<div class="thumb circle">
-													<a href="blog-single.html">
+													<a href="{% url 'post-detail' post.id %}">
 														<div class="inner">
 															<img src="{{ post.main_image.url }}" alt="post-title" />
 														</div>
 													</a>
 												</div>
 												<div class="details clearfix">
-													<h6 class="post-title my-0"><a href="blog-single.html">{{ post.title }}</a></h6>
+													<h6 class="post-title my-0"><a href="{% url 'post-detail' post.id %}">{{ post.title }}</a></h6>
 													<ul class="meta list-inline mt-1 mb-0">
 														<li class="list-inline-item">{{ post.date_created|date:"D, M Y." }}</li>
 													</ul>
@@ -198,14 +198,14 @@
 										<!-- post -->
 										<div class="post post-list-sm square before-seperator">
 											<div class="thumb rounded">
-												<a href="blog-single.html">
+												<a href="{% url 'post-detail' post.id %}">
 													<div class="inner">
 														<img src="{{ post.main_image.url }}" alt="post-title" />
 													</div>
 												</a>
 											</div>
 											<div class="details clearfix">
-												<h6 class="post-title my-0"><a href="blog-single.html">{{ post.title }}</a></h6>
+												<h6 class="post-title my-0"><a href="{% url 'post-detail' post.id %}">{{ post.title }}</a></h6>
 												<ul class="meta list-inline mt-1 mb-0">
 													<li class="list-inline-item">{{ post.date_created|date:"D, M Y." }}</li>
 												</ul>
@@ -245,7 +245,7 @@
 										<span class="post-format-sm">
 											<i class="icon-picture"></i>
 										</span>
-										<a href="blog-single.html">
+										<a href="{% url 'post-detail' post.id %}">
 											<div class="inner">
 												<img src="{{ post.main_image.url }}" alt="post-title" />
 											</div>
@@ -258,7 +258,7 @@
 											<li class="list-inline-item"><a href="#">{{ post.categories }}</a></li>
 											<li class="list-inline-item">{{ post.date_created|date:"D, M Y." }}</li>
 										</ul>
-										<h5 class="post-title"><a href="blog-single.html">{{ post.title }}</a></h5>
+										<h5 class="post-title"><a href="{% url 'post-detail' post.id %}">{{ post.title }}</a></h5>
 										<p class="excerpt mb-0">{{ post.get_paragraph_intro }}</p>
 									
 									</div>
@@ -373,45 +373,7 @@
 	</section>
 
 	<!-- instagram feed -->
-	<div class="instagram">
-		<div class="container-xl">
-			<!-- button -->
-			<a href="#" class="btn btn-default btn-instagram">@Katen on Instagram</a>
-			<!-- images -->
-			<div class="instagram-feed d-flex flex-wrap">
-				<div class="insta-item col-sm-2 col-6 col-md-2">
-					<a href="#">
-						<img src="images/insta/insta-1.jpg" alt="insta-title" />
-					</a>
-				</div>
-				<div class="insta-item col-sm-2 col-6 col-md-2">
-					<a href="#">
-						<img src="images/insta/insta-2.jpg" alt="insta-title" />
-					</a>
-				</div>
-				<div class="insta-item col-sm-2 col-6 col-md-2">
-					<a href="#">
-						<img src="images/insta/insta-3.jpg" alt="insta-title" />
-					</a>
-				</div>
-				<div class="insta-item col-sm-2 col-6 col-md-2">
-					<a href="#">
-						<img src="images/insta/insta-4.jpg" alt="insta-title" />
-					</a>
-				</div>
-				<div class="insta-item col-sm-2 col-6 col-md-2">
-					<a href="#">
-						<img src="images/insta/insta-5.jpg" alt="insta-title" />
-					</a>
-				</div>
-				<div class="insta-item col-sm-2 col-6 col-md-2">
-					<a href="#">
-						<img src="images/insta/insta-6.jpg" alt="insta-title" />
-					</a>
-				</div>
-			</div>
-		</div>
-	</div>
+
 
 	<!-- footer -->
 	<footer>
@@ -420,7 +382,7 @@
 				<div class="row d-flex align-items-center gy-4">
 					<!-- copyright text -->
 					<div class="col-md-4">
-						<span class="copyright">© 2021 Katen. Template by ThemeGer.</span>
+						<span class="copyright">© 2021. Template by @Markothedev.</span>
 					</div>
 
 					<!-- social icons -->
