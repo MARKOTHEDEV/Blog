@@ -1,8 +1,10 @@
-from django.shortcuts import render
+from django.shortcuts import redirect, render
+from django.urls import reverse
 from . import models
 from django.views import generic
-
-
+from rest_framework.decorators import api_view
+from rest_framework.response import Response
+from rest_framework import status
 
 
 def index(request):
@@ -19,14 +21,21 @@ def index(request):
       }
     return render(request,'index.html',context)
 
-# def create_comment(request):
-
+def create_comment(request,pk=None):
+    name = request.POST['name']
+    comment_text = request.POST['comment_text']
+    post = models.BlogPost.objects.get(id=pk)
+    new_comment = models.Comment.objects.create(post=post,name = name,comment_text=comment_text)
+    new_comment.save()
+    # print(reverse)
+    return redirect(reverse('post-detail',kwargs={'pk':pk}))
 
 class PostDetail(generic.DetailView):
     model = models.BlogPost
     template_name='blog-single.html'
     context_object_name ='blogpost'
-
+    
+    
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -34,4 +43,34 @@ class PostDetail(generic.DetailView):
         context['5popular_posts'] = models.BlogPost.objects.all().filter(is_popular=True)[0:5]
         context['about_site'] = models.AboutSite.objects.get_site_about()
         context['all_comment']= models.Comment.objects.filter(post=self.kwargs.get('pk'))
+        context['num_of_comment'] = models.Comment.objects.count()
         return context
+
+ 
+
+@api_view(['POST'])
+def increment_BlogLikes(request,pk=None):
+    post =models.BlogPost.objects.get(id=pk)
+    postlikes,created = models.BlogLikes.objects.get_or_create(blogpost=post)
+    print(created)
+
+    DATA= request.data
+    print(DATA)
+    def save_likes_or_dislikes(data,likemodel):
+        if data['like'] == True:
+            print("likes",likemodel.likes)
+            likemodel.likes +=1
+
+        if data['dislike'] == True:
+            likemodel.dislikes +=1
+        likemodel.save()
+
+    if created:
+        "this works if the instance is just created"
+        save_likes_or_dislikes(DATA,postlikes)         
+    else:
+        "this runs we want to update the insance"
+        save_likes_or_dislikes(DATA,postlikes)         
+
+
+    return Response(data={'success':'the data has been saved'},status=status.HTTP_200_OK)

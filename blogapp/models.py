@@ -121,10 +121,11 @@ class BlogPost(models.Model):
 
 
 class Comment(models.Model):
-    user = models.ForeignKey(myUser,on_delete=models.CASCADE)
+    name = models.CharField(max_length=200)
     comment_text = models.TextField()
     post = models.ForeignKey(BlogPost,on_delete=models.CASCADE,null=True)
     date_created = models.DateTimeField(auto_now_add=True)
+    
 
     def __str__(self):
         return f'Comment By {self.user.first_name}'
@@ -135,11 +136,13 @@ class BlogParagraph(models.Model):
     input_text = models.TextField()
     image = models.ImageField(upload_to='blogParagraphImage/%m/%d/',blank=True)
 
-# class BlogImages(models.Model):
-#     blogpost = models.ForeignKey(BlogPost,on_delete=models.CASCADE)
-#     secondary_image= models.ImageField(upload_to='blogpost/secondary_image/%m/%d/')
+class BlogLikes(models.Model):
+    likes = models.IntegerField(blank=True,default=0)
+    dislikes = models.IntegerField(blank=True,default=0)
+    blogpost = models.ForeignKey(BlogPost,on_delete=models.CASCADE)
 
-
+    def __str__(self):
+        return f'Likes: {self.likes} || Dislikes: {self.dislikes}'
 
 class AboutSite_Manager(models.Manager):
 

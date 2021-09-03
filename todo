@@ -1,13 +1,10 @@
 
 Create a Model Methods
 
-method to return one random posts
+method to return one random posts -- done
 
-
-method that return all posts that is marked as trending - trending section
-
-method that returns all post but the new posts will be at the begining -- this will be rendered at the Latest post section
-
+method that return all posts that is marked as trending - trending section -- done
+method that returns all post but the new posts will be at the begining -- this will be rendered at the Latest post section --done
 
 
 
@@ -15,19 +12,12 @@ method that returns all post but the new posts will be at the begining -- this w
 
 
 
-    just some lorem to use lol
-Lorem ipsum dolor sit amet consectetur adipisicing elit. Pariatur sunt, vitae minima dolore consectetur omnis tenetur, nisi quae expedita vel beatae placeat adipisci amet vero nesciunt praesentium eum enim.
 
 
-Lorem ipsum dolor sit amet consectetur adipisicing elit. Pariatur sunt, vitae minima dolore consectetur omnis tenetur, nisi quae expedita vel beatae placeat adipisci amet vero nesciunt praesentium eum enim.
-
-
-Lorem ipsum dolor sit amet consectetur adipisicing elit. Pariatur sunt, vitae minima dolore consectetur omnis tenetur, nisi quae expedita vel beatae placeat adipisci amet vero nesciunt praesentium eum enim.
-
-Lorem ipsum dolor sit amet consectetur adipisicing elit. Pariatur sunt, vitae minima dolore consectetur omnis tenetur, nisi quae expedita vel beatae placeat adipisci amet vero nesciunt praesentium eum enim.
+work on comment --done
 
 
 
-Lorem ipsum dolor sit amet consectetur adipisicing elit. Pariatur sunt, vitae minima dolore consectetur omnis tenetur, nisi quae expedita vel beatae placeat adipisci amet vero nesciunt praesentium eum enim.
-
-
+likes
+work on some links
+create a filter page and view that recives a categories or search keyword and renders accordingly

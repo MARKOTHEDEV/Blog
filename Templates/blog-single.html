@@ -165,8 +165,8 @@
 
 					<!-- section header -->
 					<div class="section-header">
-						<h3 class="section-title">Comments (3)</h3>
-						<img src="images/wave.svg" class="wave" alt="wave" />
+						<h3 class="section-title">Comments ({{ num_of_comment }})</h3>
+						<img src="{% static 'images/wave.svg' %}" class="wave" alt="wave" />
 					</div>
 					<!-- post comments -->
 					<div class="comments bordered padding-30 rounded">
@@ -177,10 +177,10 @@
 											<!-- comment item -->
 										<li class="comment rounded">
 											<div class="thumb">
-												<img src="{{ comment.user.image.url }}" style="height: 30px;width:30px;border-radius:50%;" alt="John Doe" />
+												<img src="{% static 'images/user.jpg' %}" style="height: 70px;width:70px;border-radius:50%;" alt="John Doe" />
 											</div>
 											<div class="details">
-												<h4 class="name"><a href="#">{{ comment.user }}</a></h4>
+												<h4 class="name"><a href="#">{{ comment.name }}</a></h4>
 												<span class="date">{{ comment.date_created|date:"D, M Y." }}</span>
 												<p>{{ comment.comment_text }}</p>
 												<!-- <p>	comment item
@@ -216,8 +216,8 @@
 					<!-- comment form -->
 					<div class="comment-form rounded bordered padding-30">
 
-						<form id="comment-form" class="comment-form" method="post">
-				
+						<form action="{% url 'create_comment' blogpost.id %}" id="comment-form" class="comment-form" method="post">
+							{% csrf_token %}
 							<div class="messages"></div>
 							
 							<div class="row">
@@ -225,23 +225,14 @@
 								<div class="column col-md-12">
 									<!-- Comment textarea -->
 									<div class="form-group">
-										<textarea name="comment_input" id="InputComment" class="form-control" rows="4" placeholder="Your comment here..." required="required"></textarea>
+										<textarea name="comment_text" id="InputComment" class="form-control" rows="4" placeholder="Your comment here..." required="required"></textarea>
 									</div>
 								</div>
-
-								<div class="column col-md-6">
-									<!-- Email input -->
-									<div class="form-group">
-										<input type="email" class="form-control" id="InputEmail" name="InputEmail" placeholder="Email address" required="required">
-									</div>
-								</div>
-
-								
 	
 								<div class="column col-md-12">
 									<!-- Email input -->
 									<div class="form-group">
-										<input type="text" class="form-control" id="InputName" name="InputName" placeholder="Your name" required="required">
+										<input type="text" class="form-control" id="InputName" name="name" placeholder="Your name" required="required">
 									</div>
 								</div>
 						
