@@ -19,6 +19,7 @@ def index(request):
       }
     return render(request,'index.html',context)
 
+# def create_comment(request):
 
 
 class PostDetail(generic.DetailView):
@@ -32,4 +33,5 @@ class PostDetail(generic.DetailView):
         context['paragraphs'] = self.get_object().blogparagraph_set.all()
         context['5popular_posts'] = models.BlogPost.objects.all().filter(is_popular=True)[0:5]
         context['about_site'] = models.AboutSite.objects.get_site_about()
+        context['all_comment']= models.Comment.objects.filter(post=self.kwargs.get('pk'))
         return context

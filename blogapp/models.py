@@ -120,6 +120,14 @@ class BlogPost(models.Model):
         return f'{self.title} By {self.author}'
 
 
+class Comment(models.Model):
+    user = models.ForeignKey(myUser,on_delete=models.CASCADE)
+    comment_text = models.TextField()
+    post = models.ForeignKey(BlogPost,on_delete=models.CASCADE,null=True)
+    date_created = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f'Comment By {self.user.first_name}'
 
 class BlogParagraph(models.Model):
     "one BlogPost has many BlogParagraph"

@@ -172,42 +172,37 @@
 					<div class="comments bordered padding-30 rounded">
 
 						<ul class="comments">
-							<!-- comment item -->
-							<li class="comment rounded">
-								<div class="thumb">
-									<img src="images/other/comment-1.png" alt="John Doe" />
-								</div>
-								<div class="details">
-									<h4 class="name"><a href="#">John Doe</a></h4>
-									<span class="date">Jan 08, 2021 14:41 pm</span>
-									<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam vitae odio ut tortor fringilla cursus sed quis odio.</p>
-									<a href="#" class="btn btn-default btn-sm">Reply</a>
-								</div>
-							</li>
-							<!-- comment item -->
-							<li class="comment child rounded">
-								<div class="thumb">
-									<img src="images/other/comment-2.png" alt="John Doe" />
-								</div>
-								<div class="details">
-									<h4 class="name"><a href="#">Helen Doe</a></h4>
-									<span class="date">Jan 08, 2021 14:41 pm</span>
-									<p>Maecenas tempus, tellus eget condimentum rhoncus, sem quam semper libero, sit amet adipiscing sem neque sed ipsum.</p>
-									<a href="#" class="btn btn-default btn-sm">Reply</a>
-								</div>
-							</li>
-							<!-- comment item -->
-							<li class="comment rounded">
-								<div class="thumb">
-									<img src="images/other/comment-3.png" alt="John Doe" />
-								</div>
-								<div class="details">
-									<h4 class="name"><a href="#">Anna Doe</a></h4>
-									<span class="date">Jan 08, 2021 14:41 pm</span>
-									<p>Cras ultricies mi eu turpis hendrerit fringilla. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia.</p>
-									<a href="#" class="btn btn-default btn-sm">Reply</a>
-								</div>
-							</li>
+							
+							{% for comment  in all_comment  %}
+											<!-- comment item -->
+										<li class="comment rounded">
+											<div class="thumb">
+												<img src="{{ comment.user.image.url }}" style="height: 30px;width:30px;border-radius:50%;" alt="John Doe" />
+											</div>
+											<div class="details">
+												<h4 class="name"><a href="#">{{ comment.user }}</a></h4>
+												<span class="date">{{ comment.date_created|date:"D, M Y." }}</span>
+												<p>{{ comment.comment_text }}</p>
+												<!-- <p>	comment item
+													<li class="comment rounded">
+														<div class="thumb">
+															<img src="images/other/comment-1.png" alt="John Doe" />
+														</div>
+														<div class="details">
+															<h4 class="name"><a href="#">John Doe</a></h4>
+															<span class="date">Jan 08, 2021 14:41 pm</span>
+															<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam vitae odio ut tortor fringilla cursus sed quis odio.</p>
+															<a href="#" class="btn btn-default btn-sm">Reply</a>
+														</div>
+													</li>
+													</p> -->
+												<!-- <a href="#" class="btn btn-default btn-sm">Reply</a> -->
+											</div>
+										</li>
+										
+							{% endfor %}
+								
+						
 						</ul>
 					</div>
 
@@ -216,7 +211,7 @@
 					<!-- section header -->
 					<div class="section-header">
 						<h3 class="section-title">Leave Comment</h3>
-						<img src="images/wave.svg" class="wave" alt="wave" />
+						<img src="{% static 'images/wave.svg' %}" class="wave" alt="wave" />
 					</div>
 					<!-- comment form -->
 					<div class="comment-form rounded bordered padding-30">
@@ -230,7 +225,7 @@
 								<div class="column col-md-12">
 									<!-- Comment textarea -->
 									<div class="form-group">
-										<textarea name="InputComment" id="InputComment" class="form-control" rows="4" placeholder="Your comment here..." required="required"></textarea>
+										<textarea name="comment_input" id="InputComment" class="form-control" rows="4" placeholder="Your comment here..." required="required"></textarea>
 									</div>
 								</div>
 
@@ -241,12 +236,7 @@
 									</div>
 								</div>
 
-								<div class="column col-md-6">
-									<!-- Name input -->
-									<div class="form-group">
-										<input type="text" class="form-control" name="InputWeb" id="InputWeb" placeholder="Website" required="required">
-									</div>
-								</div>
+								
 	
 								<div class="column col-md-12">
 									<!-- Email input -->
@@ -389,46 +379,7 @@
 		</div>
 	</section>
 
-	<!-- instagram feed -->
-	<div class="instagram">
-		<div class="container-xl">
-			<!-- button -->
-			<a href="#" class="btn btn-default btn-instagram">@Katen on Instagram</a>
-			<!-- images -->
-			<div class="instagram-feed d-flex flex-wrap">
-				<div class="insta-item col-sm-2 col-6 col-md-2">
-					<a href="#">
-						<img src="images/insta/insta-1.jpg" alt="insta-title" />
-					</a>
-				</div>
-				<div class="insta-item col-sm-2 col-6 col-md-2">
-					<a href="#">
-						<img src="images/insta/insta-2.jpg" alt="insta-title" />
-					</a>
-				</div>
-				<div class="insta-item col-sm-2 col-6 col-md-2">
-					<a href="#">
-						<img src="images/insta/insta-3.jpg" alt="insta-title" />
-					</a>
-				</div>
-				<div class="insta-item col-sm-2 col-6 col-md-2">
-					<a href="#">
-						<img src="images/insta/insta-4.jpg" alt="insta-title" />
-					</a>
-				</div>
-				<div class="insta-item col-sm-2 col-6 col-md-2">
-					<a href="#">
-						<img src="images/insta/insta-5.jpg" alt="insta-title" />
-					</a>
-				</div>
-				<div class="insta-item col-sm-2 col-6 col-md-2">
-					<a href="#">
-						<img src="images/insta/insta-6.jpg" alt="insta-title" />
-					</a>
-				</div>
-			</div>
-		</div>
-	</div>
+
 
 	<!-- footer -->
 	<footer>
@@ -491,7 +442,11 @@
 <script src="{% static 'js/jquery.sticky-sidebar.min.js' %}"></script>
 <script src="{% static 'js/custom.js' %}"></script>
 
+
+<script>
+
+	
+</script>
 </body>
 
-<!-- Mirrored from maanjaa.com/themeger/katen-demo/html/blog-single.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 01 Sep 2021 06:41:57 GMT -->
 </html>
