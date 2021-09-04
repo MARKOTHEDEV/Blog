@@ -15,7 +15,20 @@
 	<link rel="stylesheet" href="{% static 'css/simple-line-icons.css' %}" type="text/css" media="all">
 	<link rel="stylesheet" href="{% static 'css/style.css' %}" type="text/css" media="all">
 
-
+	<style>
+		.messages{
+	
+			background: linear-gradient(to right, #FE4F70 0%, #FFA387 51%, #FE4F70 100%);
+			padding: .3rem;
+			font-size: 1.7rem;
+			position: fixed;
+			top: 0;
+			left: 0;
+			width: 100%;
+			text-align: center;
+			color: white;
+		}
+	</style>
 
 </head>
 
@@ -194,6 +207,9 @@
 						<div class="row gy-5">
 							<div class="col-sm-12">
 								
+								{% if 5trending_posts %}
+									
+									
 								{% for post in 5trending_posts  %}
 										<!-- post -->
 										<div class="post post-list-sm square before-seperator">
@@ -212,6 +228,9 @@
 											</div>
 										</div>
 								{% endfor %}
+								{% else %}
+								<p>No Result Found</p>
+								{% endif %}
 									
 							
 								
@@ -237,6 +256,9 @@
 						<div class="row">
 							
 							
+							{% if latest_posts %}
+								
+								
 							{% for post  in latest_posts %}
 							<div class="col-md-12 col-sm-6">
 								<!-- post -->
@@ -266,6 +288,10 @@
 							</div>
 
 							{% endfor %}
+
+							{% else %}
+								<p>No  Result Found</p>
+							{% endif %}
 								
 							
 						</div
@@ -321,16 +347,18 @@
 						</div>
 
 						<!-- widget newsletter -->
+					
 						<div class="widget rounded">
 							<div class="widget-header text-center">
 								<h3 class="widget-title">Newsletter</h3>
 								<img src="{% static 'images/wave.svg' %}" class="wave" alt="wave" />
 							</div>
 							<div class="widget-content">
-								<span class="newsletter-headline text-center mb-3">Join 70,000 subscribers!</span>
-								<form>
+								<span class="newsletter-headline text-center mb-3">Join {{ count_registered_emails }} subscribers!</span>
+								<form action="{% url 'subscribe-for-newsletter' %}" method="POST">
+									{% csrf_token %}
 									<div class="mb-2">
-										<input class="form-control w-100 text-center" placeholder="Email address…" type="email">
+										<input class="form-control w-100 text-center" placeholder="Email address…" type="email" name="email" required>
 									</div>
 									<button class="btn btn-default btn-full" type="submit">Sign Up</button>
 								</form>
@@ -429,6 +457,21 @@
 {% include './partials/side_nav.html' %}
 <!-- end of canvas menu -->
 
+
+
+
+
+
+{% if messages %}
+<ul class="messages" >
+	{% for message in messages %}
+	<p>{{ message }}</p>
+	{% endfor %}
+</ul>
+{% endif %}
+
+
+
 <!-- JAVA SCRIPTS -->
 <script src="{% static 'js/jquery.min.js' %}"></script>
 <script src="{% static 'js/popper.min.js' %}"></script>
@@ -436,7 +479,14 @@
 <script src="{% static 'js/slick.min.js' %}"></script>
 <script src="{% static 'js/jquery.sticky-sidebar.min.js' %}"></script>
 <script src="{% static 'js/custom.js' %}"></script>
+<script>
 
+	window.addEventListener('load',()=>{
+		setInterval(()=>{
+			document.querySelector('.messages').style.display='none'
+		},3000)
+	})
+</script>
 </body>
 
 </html>

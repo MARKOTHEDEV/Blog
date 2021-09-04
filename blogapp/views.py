@@ -1,3 +1,4 @@
+from django.contrib import messages
 from django.db.models.query_utils import Q
 from django.shortcuts import redirect, render
 from django.urls import reverse
@@ -19,7 +20,8 @@ def index(request):
         '5trending_posts':models.BlogPost.objects.get_all_trending(5),
         '5recent_posts':models.BlogPost.objects.get_range_of_post(5),
         'latest_posts':models.BlogPost.objects.get_posts_in_desc_order(),
-        'about_site':models.AboutSite.objects.get_site_about()
+        'about_site':models.AboutSite.objects.get_site_about(),
+        'count_registered_emails':models.SavedNewsletterEmails.objects.count()
       }
     return render(request,'index.html',context)
 
@@ -46,6 +48,16 @@ def create_comment(request,pk=None):
     # print(reverse)
     return redirect(reverse('post-detail',kwargs={'pk':pk}))
 
+def save_email_for_newsletter(request):
+    if request.method == 'POST':
+        email = request.POST['email']
+        instance = models.SavedNewsletterEmails.objects.create(email=email)
+        instance.save()
+        messages.success(request,'Your Email Addresse Has Been saved successfully!!')
+        
+    return redirect(reverse('home'))
+
+
 class PostDetail(generic.DetailView):
     model = models.BlogPost
     template_name='blog-single.html'
@@ -62,9 +74,10 @@ class PostDetail(generic.DetailView):
         context['num_of_comment'] = models.Comment.objects.count()
         context['postid'] = self.kwargs.get('pk')
         context['like_dislike_obj'] = self.get_object().bloglikes_set.all()
+        context['count_registered_emails'] = models.SavedNewsletterEmails.objects.count()
         return context
 
- 
+
 
 @api_view(['POST'])
 def increment_BlogLikes(request,pk=None):

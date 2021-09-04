@@ -4,6 +4,8 @@ from django.contrib.auth.models import (AbstractBaseUser,PermissionsMixin,BaseUs
 import random
 import datetime
 
+from django.db.models.expressions import F
+
 
 
 
@@ -39,7 +41,7 @@ class myUser(PermissionsMixin,AbstractBaseUser):
     is_superuser = models.BooleanField(default=False)
     is_staff = models.BooleanField(default=False)
     image = models.ImageField(upload_to='userimage/%m/%d/',null=True)
-
+    about_writer = models.TextField(default="")
 
     USERNAME_FIELD='email'
     REQUIRED_FIELDS = []
@@ -156,3 +158,9 @@ class AboutSite(models.Model):
 
     def __str__(self):
         return f'{self.id}) { self.body[0:10]}..'
+
+class SavedNewsletterEmails(models.Model):
+    email = models.EmailField()
+
+    def __str__(self):
+        return f'{self.email}'
