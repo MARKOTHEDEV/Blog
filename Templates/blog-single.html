@@ -2,11 +2,10 @@
 <!DOCTYPE html>
 <html lang="en-US">
 
-<!-- Mirrored from maanjaa.com/themeger/katen-demo/html/blog-single.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 01 Sep 2021 06:41:54 GMT -->
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	<title>Katen - Minimal Blog & Magazine HTML Theme</title>
-	<meta name="description" content="Katen - Minimal Blog & Magazine HTML Theme">
+	<title>Minimal Blog & Magazine HTML Theme</title>
+	<meta name="description" content="Minimal Blog & Magazine HTML Theme">
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 	<link rel="shortcut icon" type="image/x-icon" href="{% static 'images/favicon.png' %}">
 
@@ -177,8 +176,13 @@
 							<img src="{% static 'images/other/avatar-about.png' %}" alt="Katen Doe" />
 						</div>
 						<div class="details">
-							<h4 class="name"><a href="#">Katen Doe</a></h4>
-							<p>Hello, I’m a content writer who is fascinated by content fashion, celebrity and lifestyle. She helps clients bring the right content to the right people.</p>
+							<h4 class="name"><a href="#">{{ blogpost.author }}</a></h4>
+							
+							{% if blogpost.author.about_writer %}
+								<p>{{ blogpost.author.about_writer }}</p>
+							<!-- <p>Hello, I’m a content writer who is fascinated by content fashion, celebrity and lifestyle. She helps clients bring the right content to the right people.</p> -->
+							{% endif %}
+								
 							<!-- social icons -->
 							<ul class="social-icons list-unstyled list-inline mb-0">
 								<li class="list-inline-item"><a href="#"><i class="fab fa-facebook-f"></i></a></li>

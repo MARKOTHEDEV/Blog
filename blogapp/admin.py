@@ -10,7 +10,7 @@ class UserAdmin(BaseUserAdmin):
     list_display_links = ('first_name','email')
     fieldsets = (
         (None, {'fields': ('email', 'password')}),
-        ('Personal info', {'fields': ('image','first_name','surname_name','last_login')}),
+        ('Personal info', {'fields': ('image','first_name','surname_name','last_login','about_writer')}),
         ('Permissions', {'fields': ('is_staff','is_active')}),
     )
     # add_fieldsets is not a standard ModelAdmin attribute. UserAdmin
