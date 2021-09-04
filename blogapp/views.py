@@ -1,3 +1,4 @@
+from django.db.models.query_utils import Q
 from django.shortcuts import redirect, render
 from django.urls import reverse
 from . import models
@@ -5,6 +6,7 @@ from django.views import generic
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework import status
+
 
 
 def index(request):
@@ -20,6 +22,20 @@ def index(request):
         'about_site':models.AboutSite.objects.get_site_about()
       }
     return render(request,'index.html',context)
+
+
+def filter_view(request,searchKeyword=None,categories=None):
+    if searchKeyword != "None":
+        print(searchKeyword)
+        queryset = models.BlogPost.objects.filter(title__icontains=searchKeyword)
+        print(queryset)
+    elif categories != "None":
+        category= models.Categories.objects.filter(slug__icontains=categories).first()
+        queryset = models.BlogPost.objects.filter(categories=category)
+    return render(request,'filter.html',{"results":queryset,
+        'about_site':models.AboutSite.objects.get_site_about()
+    
+    })
 
 def create_comment(request,pk=None):
     name = request.POST['name']
@@ -44,6 +60,8 @@ class PostDetail(generic.DetailView):
         context['about_site'] = models.AboutSite.objects.get_site_about()
         context['all_comment']= models.Comment.objects.filter(post=self.kwargs.get('pk'))
         context['num_of_comment'] = models.Comment.objects.count()
+        context['postid'] = self.kwargs.get('pk')
+        context['like_dislike_obj'] = self.get_object().bloglikes_set.all()
         return context
 
  
@@ -70,7 +88,9 @@ def increment_BlogLikes(request,pk=None):
         save_likes_or_dislikes(DATA,postlikes)         
     else:
         "this runs we want to update the insance"
-        save_likes_or_dislikes(DATA,postlikes)         
+        save_likes_or_dislikes(DATA,postlikes) 
+
+        
 
 
-    return Response(data={'success':'the data has been saved'},status=status.HTTP_200_OK)
+    return Response(data={"likes":postlikes.likes,"dislikes":postlikes.dislikes},status=status.HTTP_200_OK)
