@@ -15,7 +15,20 @@
 	<link rel="stylesheet" href="{% static 'css/slick.css' %}" type="text/css" media="all">
 	<link rel="stylesheet" href="{% static 'css/simple-line-icons.css' %}" type="text/css" media="all">
 	<link rel="stylesheet" href="{% static 'css/style.css' %}" type="text/css" media="all">
-
+	<style>
+		.messages{
+	
+			background: linear-gradient(to right, #FE4F70 0%, #FFA387 51%, #FE4F70 100%);
+			padding: .3rem;
+			font-size: 1.7rem;
+			position: fixed;
+			top: 0;
+			left: 0;
+			width: 100%;
+			text-align: center;
+			color: white;
+		}
+	</style>
 
 </head>
 
@@ -168,46 +181,7 @@
 		</div>
 	</section>
 
-	<!-- instagram feed -->
-	<div class="instagram">
-		<div class="container-xl">
-			<!-- button -->
-			<a href="#" class="btn btn-default btn-instagram">@Katen on Instagram</a>
-			<!-- images -->
-			<div class="instagram-feed d-flex flex-wrap">
-				<div class="insta-item col-sm-2 col-6 col-md-2">
-					<a href="#">
-						<img src="images/insta/insta-1.jpg" alt="insta-title" />
-					</a>
-				</div>
-				<div class="insta-item col-sm-2 col-6 col-md-2">
-					<a href="#">
-						<img src="images/insta/insta-2.jpg" alt="insta-title" />
-					</a>
-				</div>
-				<div class="insta-item col-sm-2 col-6 col-md-2">
-					<a href="#">
-						<img src="images/insta/insta-3.jpg" alt="insta-title" />
-					</a>
-				</div>
-				<div class="insta-item col-sm-2 col-6 col-md-2">
-					<a href="#">
-						<img src="images/insta/insta-4.jpg" alt="insta-title" />
-					</a>
-				</div>
-				<div class="insta-item col-sm-2 col-6 col-md-2">
-					<a href="#">
-						<img src="images/insta/insta-5.jpg" alt="insta-title" />
-					</a>
-				</div>
-				<div class="insta-item col-sm-2 col-6 col-md-2">
-					<a href="#">
-						<img src="images/insta/insta-6.jpg" alt="insta-title" />
-					</a>
-				</div>
-			</div>
-		</div>
-	</div>
+
 
 	<!-- footer -->
 	<footer>
@@ -286,7 +260,14 @@
 <script src="{% static 'js/slick.min.js' %}"></script>
 <script src="{% static 'js/jquery.sticky-sidebar.min.js' %}"></script>
 <script src="{% static 'js/custom.js' %}"></script>
+<script>
 
+	window.addEventListener('load',()=>{
+		setInterval(()=>{
+			document.querySelector('.messages').style.display='none'
+		},3000)
+	})
+</script>
 </body>
 
 </html>

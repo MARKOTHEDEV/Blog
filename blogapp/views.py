@@ -20,9 +20,11 @@ def index(request):
         '5trending_posts':models.BlogPost.objects.get_all_trending(5),
         '5recent_posts':models.BlogPost.objects.get_range_of_post(5),
         'latest_posts':models.BlogPost.objects.get_posts_in_desc_order(),
-        'about_site':models.AboutSite.objects.get_site_about(),
+        # 'about_site':models.AboutSite.objects.get_site_about(),
         'count_registered_emails':models.SavedNewsletterEmails.objects.count()
       }
+    try:context.update({'random_post':models.BlogPost.objects.get_random_post(),'about_site':models.AboutSite.objects.get_site_about(),})
+    except:context.update({'about_site':'',})
     return render(request,'index.html',context)
 
 
@@ -40,8 +42,22 @@ def filter_view(request,searchKeyword=None,categories=None):
     })
 def contactPage(request):
     "this renders the contact html"
+    if request.method == 'POST':
+        InputName = request.POST['InputName']
+        InputEmail = request.POST['InputEmail']
+        InputSubject = request.POST['InputSubject']
+        InputMessage = request.POST['InputMessage']
+
+        contact = models.ContactUs.objects.create(
+            name=InputName,
+            email= InputEmail,
+            subject = InputSubject,
+            message = InputMessage
+        )
+        contact.save()
+        messages.success(request,f'Hey  {InputName} your Request Has Been Sent We will Get Back To you Soon')
     return render(request,'contact.html')
-    
+
 def create_comment(request,pk=None):
     name = request.POST['name']
     comment_text = request.POST['comment_text']
@@ -72,12 +88,15 @@ class PostDetail(generic.DetailView):
         context = super().get_context_data(**kwargs)
         context['paragraphs'] = self.get_object().blogparagraph_set.all()
         context['5popular_posts'] = models.BlogPost.objects.all().filter(is_popular=True)[0:5]
-        context['about_site'] = models.AboutSite.objects.get_site_about()
+        # context['about_site'] = models.AboutSite.objects.get_site_about()
         context['all_comment']= models.Comment.objects.filter(post=self.kwargs.get('pk'))
         context['num_of_comment'] = models.Comment.objects.count()
         context['postid'] = self.kwargs.get('pk')
         context['like_dislike_obj'] = self.get_object().bloglikes_set.all()
         context['count_registered_emails'] = models.SavedNewsletterEmails.objects.count()
+        
+        try:context.update({'random_post':models.BlogPost.objects.get_random_post(),'about_site':models.AboutSite.objects.get_site_about(),})
+        except:context.update({'about_site':'',})
         return context
 
 

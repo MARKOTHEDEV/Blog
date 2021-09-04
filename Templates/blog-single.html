@@ -173,7 +173,7 @@
 
 					<div class="about-author padding-30 rounded">
 						<div class="thumb">
-							<img src="{% static 'images/other/avatar-about.png' %}" alt="Katen Doe" />
+							<img src="{{ blogpost.author.image.url }}" alt="Katen Doe" />
 						</div>
 						<div class="details">
 							<h4 class="name"><a href="#">{{ blogpost.author }}</a></h4>

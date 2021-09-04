@@ -113,7 +113,10 @@ class BlogPost(models.Model):
     def get_paragraph_intro(self):
         'this method get the post intro and extract 100 charachters'
         #input_text is where the text lives check BlogParagraph for more details
-        return f'{self.blogparagraph_set.all()[0].input_text[0:100]}.....'
+        try:
+            return f'{self.blogparagraph_set.all()[0].input_text[0:100]}.....'
+        except:
+            return ''
 
 
     "Custom manager"
@@ -173,4 +176,4 @@ class ContactUs(models.Model):
     message = models.TextField()
 
     def __str__(self):
-        return f'{self.nam} Ask About {self.subject}'
+        return f'{self.name} Ask About {self.subject}'
