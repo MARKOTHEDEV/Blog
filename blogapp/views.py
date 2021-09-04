@@ -38,7 +38,10 @@ def filter_view(request,searchKeyword=None,categories=None):
         'about_site':models.AboutSite.objects.get_site_about()
     
     })
-
+def contactPage(request):
+    "this renders the contact html"
+    return render(request,'contact.html')
+    
 def create_comment(request,pk=None):
     name = request.POST['name']
     comment_text = request.POST['comment_text']

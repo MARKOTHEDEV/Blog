@@ -11,6 +11,7 @@ urlpatterns = [
     path('api/likes_and_dislike/<int:pk>/',views.increment_BlogLikes,name='likes_and_dislike'),
     path('filter/<searchKeyword>/<categories>/',
     views.filter_view,name='filter'),
-    path('subscribe-for-newsletter/',views.save_email_for_newsletter,name='subscribe-for-newsletter')
+    path('subscribe-for-newsletter/',views.save_email_for_newsletter,name='subscribe-for-newsletter'),
+    path('contactPage/',views.contactPage,name='contactPage')
 
 ]
