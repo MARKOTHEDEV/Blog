@@ -48,5 +48,11 @@ admin.site.register(models.Categories)
 admin.site.register(models.AboutSite)
 admin.site.register(models.SavedNewsletterEmails)
 admin.site.register(models.ContactUs)
-admin.site.register(models.Comment)
+# admin.site.register(models.Comment)
 
+
+
+"the settings below has to do with the Admin Designs"
+admin.site.site_header= "MyBlog Admin"
+admin.site.site_title = "myBlog Portal"
+admin.site.index_title  = "Welcome to  myBlog Portal"
