@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 
 from pathlib import Path
 import django_heroku
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -32,7 +33,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    'whitenoise.runserver_nostatic',
+    # 'whitenoise.runserver_nostatic',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -135,5 +136,18 @@ MEDIA_ROOT = Path(BASE_DIR,'media')
 "AUTH_USER_MODEL tells django the model we specfy  not the custom one"
 AUTH_USER_MODEL = 'blogapp.myUser'
 
+
+
+"AWS S3 BUCKET SETTINGS FOR UPLOADING PICTURES"
+# AWS_S3_SIGNATURE_VERSION = 's3v4'
+# AWS_S3_REGION_NAME = 'eu-west-2'
+# AWS_DEFAULT_ACL = None
+# AWS_S3_VERIFY = True
+AWS_ACCESS_KEY_ID = os.environ['AWS_ACCESS_KEY_ID']
+AWS_SECRET_ACCESS_KEY = os.environ['AWS_SECRET_ACCESS_KEY']
+AWS_STORAGE_BUCKET_NAME = 'client-blog'
+AWS_DEFAULT_ACL = False 
+AWS_S3_FILE_OVERWRITE = False
+DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage' 
 
 django_heroku.settings(config=locals(),staticfiles=False,logging=False)
