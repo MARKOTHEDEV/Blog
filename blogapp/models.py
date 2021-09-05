@@ -68,11 +68,13 @@ class BlogPostManager(models.Manager):
         "this returns a random post every time it called"
         queryset = super().get_queryset()
         number_of_post = queryset.count()
-        "this code get random post from id 1 to the last id in the in the data base"
+        "this code get random post using the choices method"
         if number_of_post == 0:
             return ''
         else:
-            return queryset.get(id=random.randint(1,number_of_post))
+            # print(queryset.first().id,number_of_post)
+            return random.choices([post for post in queryset.all()])[0]
+            # return queryset.get(id=random.randint(queryset.first().id,number_of_post))
     def get_all_trending(self,num=None):
         "this function gets all the posts that are marked as 'is_trending=True' "
         if num is None:
