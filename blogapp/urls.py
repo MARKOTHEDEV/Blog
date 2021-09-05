@@ -12,6 +12,6 @@ urlpatterns = [
     path('filter/<searchKeyword>/<categories>/',
     views.filter_view,name='filter'),
     path('subscribe-for-newsletter/',views.save_email_for_newsletter,name='subscribe-for-newsletter'),
-    path('contactPage/',views.contactPage,name='contactPage')
+    path('contactpage/',views.contactPage,name='contactPage')
 
 ]

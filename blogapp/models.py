@@ -69,7 +69,10 @@ class BlogPostManager(models.Manager):
         queryset = super().get_queryset()
         number_of_post = queryset.count()
         "this code get random post from id 1 to the last id in the in the data base"
-        return queryset.get(id=random.randint(1,number_of_post))
+        if number_of_post == 0:
+            return ''
+        else:
+            return queryset.get(id=random.randint(1,number_of_post))
     def get_all_trending(self,num=None):
         "this function gets all the posts that are marked as 'is_trending=True' "
         if num is None:
@@ -80,7 +83,8 @@ class BlogPostManager(models.Manager):
         "this method get the amount of post specified"
         return super().get_queryset().all().order_by('-id')[0:num]
 
-
+    def is_there_post(self):
+        return super().get_queryset().count() != 0
     def get_posts_in_desc_order(self):
         return super().get_queryset().all().order_by('-id')
     
@@ -133,7 +137,7 @@ class Comment(models.Model):
     
 
     def __str__(self):
-        return f'Comment By {self.user.first_name}'
+        return f'Comment By {self.name}'
 
 class BlogParagraph(models.Model):
     "one BlogPost has many BlogParagraph"

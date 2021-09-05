@@ -21,8 +21,10 @@ def index(request):
         '5recent_posts':models.BlogPost.objects.get_range_of_post(5),
         'latest_posts':models.BlogPost.objects.get_posts_in_desc_order(),
         # 'about_site':models.AboutSite.objects.get_site_about(),
-        'count_registered_emails':models.SavedNewsletterEmails.objects.count()
+        'count_registered_emails':models.SavedNewsletterEmails.objects.count(),
+        'is_there_post':models.BlogPost.objects.is_there_post()
       }
+    
     try:context.update({'random_post':models.BlogPost.objects.get_random_post(),'about_site':models.AboutSite.objects.get_site_about(),})
     except:context.update({'about_site':'',})
     return render(request,'index.html',context)

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    
+    {% block head %}
+        
+    {% endblock head %}
+        
+</head>
+<body>
+    
+    
+    {% if is_there_post  %}
+        
+        
+        {% block main %}
+            
+        {% endblock main %}
+            
+
+        {% else %}
+        <h1 style="text-align: center;">Hey We Are Still Writing Come back!!! </h1>
+        <a style="text-align: center;display:block;"  href="{% url 'contactPage' %}">Click me TO contact us</a>
+    {% endif %}
+        
+</body>
+</html>

@@ -1,39 +1,45 @@
+{% extends 'base.html' %}
 {% load static %}
-<!DOCTYPE html>
-<html lang="en-US">
-<head>
-	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	<title>myBlog - Minimal Blog & Magazine HTML Theme</title>
-	<meta name="description" content="Minimal Blog & Magazine HTML Theme">
-	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-	<link rel="shortcut icon" type="image/x-icon" href="{% static 'images/favicon.png' %}">
 
-	<!-- STYLES -->
-	<link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}" type="text/css" media="all">
-	<link rel="stylesheet" href="{% static 'css/all.min.css' %}" type="text/css" media="all">
-	<link rel="stylesheet" href="{% static 'css/slick.css' %}" type="text/css" media="all">
-	<link rel="stylesheet" href="{% static 'css/simple-line-icons.css' %}" type="text/css" media="all">
-	<link rel="stylesheet" href="{% static 'css/style.css' %}" type="text/css" media="all">
 
-	<style>
-		.messages{
+
+
+{% block head %}
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>myBlog - Minimal Blog & Magazine HTML Theme</title>
+<meta name="description" content="Minimal Blog & Magazine HTML Theme">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<link rel="shortcut icon" type="image/x-icon" href="{% static 'images/favicon.png' %}">
+
+<!-- STYLES -->
+<link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}" type="text/css" media="all">
+<link rel="stylesheet" href="{% static 'css/all.min.css' %}" type="text/css" media="all">
+<link rel="stylesheet" href="{% static 'css/slick.css' %}" type="text/css" media="all">
+<link rel="stylesheet" href="{% static 'css/simple-line-icons.css' %}" type="text/css" media="all">
+<link rel="stylesheet" href="{% static 'css/style.css' %}" type="text/css" media="all">
+
+<style>
+	.messages{
+
+		background: linear-gradient(to right, #FE4F70 0%, #FFA387 51%, #FE4F70 100%);
+		padding: .3rem;
+		font-size: 1.7rem;
+		position: fixed;
+		top: 0;
+		left: 0;
+		width: 100%;
+		text-align: center;
+		color: white;
+	}
+</style>        
+{% endblock head %}
+
+
+
+
+
+{% block main %}
 	
-			background: linear-gradient(to right, #FE4F70 0%, #FFA387 51%, #FE4F70 100%);
-			padding: .3rem;
-			font-size: 1.7rem;
-			position: fixed;
-			top: 0;
-			left: 0;
-			width: 100%;
-			text-align: center;
-			color: white;
-		}
-	</style>
-
-</head>
-
-<body>
-
 <!-- preloader -->
 <div id="preloader">
 	<div class="book">
@@ -487,6 +493,5 @@
 		},3000)
 	})
 </script>
-</body>
-
-</html>
+{% endblock main %}
+	

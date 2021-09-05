@@ -48,3 +48,5 @@ admin.site.register(models.Categories)
 admin.site.register(models.AboutSite)
 admin.site.register(models.SavedNewsletterEmails)
 admin.site.register(models.ContactUs)
+admin.site.register(models.Comment)
+
