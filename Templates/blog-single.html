@@ -124,21 +124,71 @@
 								
 							<div >
 		
-		{% for like_dislike in like_dislike_obj %}
-	<div class="flex-boxsection">
-		<div class="like_or_dislike_pane">
-			<i class="fas fa-thumbs-up thumb" id="like"></i>
-			<!-- <button class="btn btn-secondary" id="like">:Like</button> -->
-			<p>{{ like_dislike.likes }}</p>
-			
-		</div>
+		{% if like_dislike_obj  %}
+				{% for like_dislike in like_dislike_obj %}
+				<div class="flex-boxsection">
+					<div class="like_or_dislike_pane">
+						<i class="fas fa-thumbs-up thumb" id="like"></i>
+						<!-- <button class="btn btn-secondary" id="like">:Like</button> -->
+						<p>{{ like_dislike.likes }}</p>
+						
+					</div>
+					
+					<div class="like_or_dislike_pane">
+						<i class="fas fa-thumbs-down thumb" id="dislike"></i>
+						<!-- <button class="btn btn-secondary" >DisLike</button> -->
+						<p>
+						{% if like_dislike.dislikes %}
+						{{ like_dislike.dislikes }}
+						{% else %}
+						0
+						{% endif %}
+							</p>
+					</div>
+				</div>
+		{% endfor %}
+
+		{% else %}
+
 		
-		<div class="like_or_dislike_pane">
-			<i class="fas fa-thumbs-down thumb" id="dislike"></i>
-			<!-- <button class="btn btn-secondary" >DisLike</button> -->
-			<p>{{ like_dislike.dislikes }}</p>
-		</div>
-	</div>
+				<div class="flex-boxsection">
+					<div class="like_or_dislike_pane">
+						<i class="fas fa-thumbs-up thumb" id="like"></i>
+						<!-- <button class="btn btn-secondary" id="like">:Like</button> -->
+						<p>0</p>
+						
+					</div>
+					
+					<div class="like_or_dislike_pane">
+						<i class="fas fa-thumbs-down thumb" id="dislike"></i>
+						<!-- <button class="btn btn-secondary" >DisLike</button> -->
+						<p>0<p/>
+					</div>
+				</div>
+		
+		{% endif %}
+			
+		{% for like_dislike in like_dislike_obj %}
+				<div class="flex-boxsection">
+					<div class="like_or_dislike_pane">
+						<i class="fas fa-thumbs-up thumb" id="like"></i>
+						<!-- <button class="btn btn-secondary" id="like">:Like</button> -->
+						<p>{{ like_dislike.likes }}</p>
+						
+					</div>
+					
+					<div class="like_or_dislike_pane">
+						<i class="fas fa-thumbs-down thumb" id="dislike"></i>
+						<!-- <button class="btn btn-secondary" >DisLike</button> -->
+						<p>
+						{% if like_dislike.dislikes %}
+						{{ like_dislike.dislikes }}
+						{% else %}
+						0
+						{% endif %}
+							</p>
+					</div>
+				</div>
 		{% endfor %}
 			
 

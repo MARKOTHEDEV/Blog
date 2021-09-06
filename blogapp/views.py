@@ -107,10 +107,10 @@ class PostDetail(generic.DetailView):
 def increment_BlogLikes(request,pk=None):
     post =models.BlogPost.objects.get(id=pk)
     postlikes,created = models.BlogLikes.objects.get_or_create(blogpost=post)
-    print(created)
+    # print(created)
 
     DATA= request.data
-    print(DATA)
+    # print(DATA)
     def save_likes_or_dislikes(data,likemodel):
         if data['like'] == True:
             print("likes",likemodel.likes)
