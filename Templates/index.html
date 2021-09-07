@@ -6,7 +6,7 @@
 
 {% block head %}
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>myBlog - Minimal Blog & Magazine HTML Theme</title>
+<title>MatetoMatefoundation </title>
 <meta name="description" content="Minimal Blog & Magazine HTML Theme">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <link rel="shortcut icon" type="image/x-icon" href="{% static 'images/favicon.png' %}">
@@ -318,7 +318,7 @@
 						<div class="widget rounded">
 							<div class="widget-about data-bg-image text-center" data-bg-image="{% static 'images/map-bg.png' %}">
 								<!-- <img src="images/logo.svg" alt="MyBlog" class="mb-4" /> -->
-								<h3 class="widget-title">MyBlog</h3>
+								{% include './partials/website_name.html' %}
 								<p class="mb-4">{{about_site.body}}</p>
 								<ul class="social-icons list-unstyled list-inline mb-0">
 									<li class="list-inline-item"><a href="#"><i class="fab fa-facebook-f"></i></a></li>
